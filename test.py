@@ -118,5 +118,6 @@ def process_image(image):
     task = "panoptic" #@param
     out = TASK_INFER[task](image, predictor, metadata).get_image()
     cv2.imwrite("result.png", out[:, :, ::-1])
+    return out[:, :, ::-1]
     
 process_image(cv2.imread("dogs.jpg"))
