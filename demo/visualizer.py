@@ -603,7 +603,7 @@ class Visualizer:
         # draw mask for all instances second
         all_instances = list(pred.instance_masks())
         if len(all_instances) == 0:
-            return self.output
+            return self.output, None
         masks, sinfo = list(zip(*all_instances))
         category_ids = [x["category_id"] for x in sinfo]
 
@@ -623,7 +623,7 @@ class Visualizer:
             colors = None
         self.overlay_instances(masks=masks, labels=labels, assigned_colors=colors, alpha=alpha)
 
-        return self.output
+        return self.output, self.metadata.stuff_classes
 
     draw_panoptic_seg_predictions = draw_panoptic_seg  # backward compatibility
 
